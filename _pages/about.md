@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hi! I'm Kshitij, a firmware engineer at [Tor.ai](https://tor.ai/), an IIoT company based in Pune, Maharashtra. Originally from Mumbai—the city that never sleeps—I pursued my undergraduate studies in Pune (the city of Maratha power) and now call it home.
+Hi! I'm Kshitij, a firmware engineer at [Tor.ai](https://tor.ai/), an IIoT company based in Pune, Maharashtra. Originally from Mumbai (the city that never sleeps) I pursued my undergraduate studies in Pune (the city of Maratha power) and now call it home.
 
 Professional Journey
 ======
@@ -17,7 +17,7 @@ I've worked extensively with STM32 microcontrollers, developing bare-metal libra
 
 My professional experience includes:
 - **Knorr Bremse**: Year-long internship at the Embedded R&D department of this renowned German automotive supplier
-- **Startup in Surat**: Brief stint gaining startup experience
+- **Vicharak**: Brief stint gaining startup experience
 - **Tor.ai**: Current role as a firmware engineer, working on Industrial IoT solutions
 
 Technical Interests

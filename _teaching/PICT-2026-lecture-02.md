@@ -13,7 +13,7 @@ location: "Pune, India"
 ## Materials
 
 ### 📊 Slides
-- [Download Slides (PPTX)](/files/PICT-2026/lecture-02/slides.pptx)
+- [Download Slides (PPTX)](/files/PICT-2026/lecture-02/STM32F4_Lecture_2_Architecture_Clock_Bus.pptx)
 
 ### 🎥 Video Recording
 - [Watch on YouTube](https://youtu.be/2piSUnQulbk?si=2FFRXSYXx2LrqE-N)

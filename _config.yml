@@ -98,7 +98,7 @@ future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
 talkmap_link             : false      #change to true to add link to talkmap on talks page
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               : "giscus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "giscus", "custom"
   disqus:
     shortname            :
   discourse:
@@ -107,6 +107,18 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
+  giscus:
+    repo                 : "dubistweltmeister05/dubistweltmeister05.github.io"  # Your GitHub repo (username/repo)
+    repo_id              : ""  # Get this from https://giscus.app
+    category             : "Comments"  # Discussion category name
+    category_id          : ""  # Get this from https://giscus.app
+    mapping              : "pathname"  # How to map pages to discussions: pathname, url, title, og:title
+    strict               : "0"  # Use strict title matching
+    reactions_enabled    : "1"  # Enable reactions
+    emit_metadata        : "0"  # Emit discussion metadata
+    input_position       : "bottom"  # Comment input position: top, bottom
+    theme                : "preferred_color_scheme"  # Theme: light, dark, preferred_color_scheme
+    lang                 : "en"  # Language
 staticman:
   allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : "gh-pages" # "master", "gh-pages"
@@ -280,7 +292,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comment: true
+      comments: true
   # _talks
   - scope:
       path: ""

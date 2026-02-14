@@ -1,0 +1,56 @@
+/* ==========================================================================
+    CATPPUCCIN LATTE THEME - LIGHT VERSION
+    ========================================================================== */
+
+/* Catppuccin Latte color palette */
+$primary-color : #1e66f5; // Blue
+$dark-primary-color : #209fb5; // Sapphire
+$darker-primary-color : #04a5e5; // Sky
+$light-primary-color : #7287fd; // Lavender
+
+$background : #eff1f5; // Base
+$background-light : #e6e9ef; // Mantle
+$background-lighter : #dce0e8; // Crust
+$text : #4c4f69; // Text
+$text-subtext : #5c5f77; // Subtext1
+$link : #1e66f5; // Blue
+$link-dark : #04a5e5; // Sky
+$link-light : #7287fd; // Lavender
+$footer : #ccd0da; // Surface0
+
+/* Color codes used for the site */
+$danger-color : #d20f39; // Red
+$info-color : #04a5e5; // Sky
+$notice-color : #6c6f85; // Subtext0
+$success-color : #40a02b; // Green
+$warning-color : #fe640b; // Peach
+
+/* Other basic settings for the template */
+$border-radius : 4px;
+$box-shadow : 0 1px 1px rgba(0, 0, 0, 0.125);
+$global-transition : all 0.2s ease-in-out;
+$masthead-height : 70px;
+$navicon-width : 28px;
+$navicon-height : 4px;
+$sidebar-link-max-width : 250px;
+$sidebar-screen-min-width : 1024px;
+
+/* Light theme for the site */
+:root {
+    --global-base-color : #{$primary-color};
+    --global-bg-color : #{$background};
+    --global-footer-bg-color : #{$footer};
+    --global-border-color : #{$background-lighter};
+    --global-dark-border-color : #{$background-light};
+    --global-code-background-color : #{$background-lighter};
+    --global-code-text-color : #{$text};
+    --global-fig-caption-color : #{$text-subtext};
+    --global-link-color : #{$link};
+    --global-link-color-hover : #{$link-dark};
+    --global-link-color-visited : #{$link-light};
+    --global-masthead-link-color : #{$text};
+    --global-masthead-link-color-hover : #{$primary-color};
+    --global-text-color : #{$text};
+    --global-text-color-light : #{$text-subtext};
+    --global-thead-color : #{$background-light};
+}

@@ -76,6 +76,11 @@
         <!-- End new comment form -->
       {% endif %}
     </section>
+  {% when "giscus" %}
+    <h4 class="page__comments-title">{{ comments_label }}</h4>
+    <section id="giscus_thread">
+      {% include /comments-providers/giscus.html %}
+    </section>
   {% when "custom" %}
     <h4 class="page__comments-title">{{ comments_label }}</h4>
     <section id="comments"></section>

@@ -6,6 +6,7 @@ permalink: /teaching/PICT-2026-lecture-02
 venue: "PICT, Pune"
 date: 2026-01-22
 location: "Pune, India"
+comments: true
 ---
 
 # STM32F4xx Internals

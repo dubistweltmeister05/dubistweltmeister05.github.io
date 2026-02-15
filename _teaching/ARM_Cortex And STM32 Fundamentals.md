@@ -6,6 +6,7 @@ permalink: /teaching/PICT-2026-lecture-01
 venue: "PICT, Pune"
 date: 2026-01-15
 location: "Pune, India"
+comments: true
 ---
 
 # ARM Cortex and STM32 Fundamentals

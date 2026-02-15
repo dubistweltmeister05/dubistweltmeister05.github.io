@@ -1,0 +1,56 @@
+/* ==========================================================================
+    CATPPUCCIN MOCHA THEME - DARK VERSION
+    ========================================================================== */
+
+/* Catppuccin Mocha color palette */
+$primary-color : #89b4fa; // Blue
+$dark-primary-color : #74c7ec; // Sapphire
+$darker-primary-color : #89dceb; // Sky  
+$light-primary-color : #b4befe; // Lavender
+
+$background : #1e1e2e; // Base
+$background-light : #313244; // Surface0
+$background-lighter : #45475a; // Surface1
+$text : #cdd6f4; // Text
+$text-subtext : #bac2de; // Subtext1
+$link : #89b4fa; // Blue
+$link-dark : #74c7ec; // Sapphire
+$link-light : #b4befe; // Lavender
+$footer : #181825; // Mantle
+
+/* Color codes used for the site */
+$danger-color : #f38ba8; // Red
+$info-color : #89dceb; // Sky
+$notice-color : #a6adc8; // Subtext0
+$success-color : #a6e3a1; // Green
+$warning-color : #fab387; // Peach
+
+/* Other basic settings for the template */
+$border-radius : 4px;
+$box-shadow : 0 1px 1px rgba(0, 0, 0, 0.125);
+$global-transition : all 0.2s ease-in-out;
+$masthead-height : 70px;
+$navicon-width : 28px;
+$navicon-height : 4px;
+$sidebar-link-max-width : 250px;
+$sidebar-screen-min-width : 1024px;
+
+/* Dark theme for the site */
+html[data-theme="dark"] {
+    --global-base-color : #{$primary-color};
+    --global-bg-color : #{$background};
+    --global-footer-bg-color : #{$footer};
+    --global-border-color : #{$background-lighter};
+    --global-dark-border-color : #{$background-light};
+    --global-code-background-color : #{$background-light};
+    --global-code-text-color : #{$text};
+    --global-fig-caption-color : #{$text-subtext};
+    --global-link-color : #{$link};
+    --global-link-color-hover : #{$link-light};
+    --global-link-color-visited : #{$link-dark};
+    --global-masthead-link-color : #{$text};
+    --global-masthead-link-color-hover : #{$primary-color};
+    --global-text-color : #{$text};
+    --global-text-color-light : #{$text-subtext};
+    --global-thead-color : #{$background-light};
+}

@@ -118,10 +118,10 @@ Volunteering
 
 Achievements & Activities
 ======
-* **Martial Arts**: First Dan Black Belt in Karate
-* **Sports**: Former club-level cricketer and active table tennis player
-* **Music**: Guitarist
-* **Football**: Passionate Manchester United supporter
+* **Martial Arts & Discipline**: First Dan black belt in karate; practicing since childhood.
+* **Sports**: Former club-level cricketer; trained in lawn tennis at an academy; active football and table tennis player; captained branch football team in inter-college tournaments.
+* **Football Culture**: Die-hard Manchester United supporter, used to late-night matches and early-morning commitments.
+* **Music**: Guitarist.
 
 Teaching & Workshops
 ======

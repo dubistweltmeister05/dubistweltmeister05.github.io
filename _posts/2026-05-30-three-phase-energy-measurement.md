@@ -432,7 +432,7 @@ System power factor combines all three phases through weighted averaging; it ind
 
 ### Reactive Factor (QF)
 
-The reactive factor represents the percentage of apparent power that oscillates reactively rather than performing useful work, providing a direct complement to power factor. When power factor expresses efficiency in terms of cosine, reactive factor expresses the sine component; the Pythagorean relationship $QF^2 + PF^2 = 1$ holds exactly for sinusoidal signals. Reactive factors exceeding 0.5 (corresponding to power factors below 0.866) typically trigger power factor correction requirements from utilities, as the reactive power dominates and creates excessive burden on distribution infrastructure. System operators track reactive factor evolution throughout the day; as loads shift from motor-heavy (high reactive factor) to resistive-heavy (low reactive factor), the reactive factor component varies, requiring dynamic capacitor bank switching to maintain acceptable power factors.
+The reactive factor represents the percentage of apparent power that oscillates reactively rather than performing useful work, providing a direct complement to power factor. When power factor expresses efficiency in terms of cosine, reactive factor expresses the sine component; the Pythagorean relationship $$QF^2 + PF^2 = 1$$ holds exactly for sinusoidal signals. Reactive factors exceeding 0.5 (corresponding to power factors below 0.866) typically trigger power factor correction requirements from utilities, as the reactive power dominates and creates excessive burden on distribution infrastructure. System operators track reactive factor evolution throughout the day; as loads shift from motor-heavy (high reactive factor) to resistive-heavy (low reactive factor), the reactive factor component varies, requiring dynamic capacitor bank switching to maintain acceptable power factors.
 
 ### Frequency Measurement
 
@@ -466,7 +466,7 @@ Reactive energy accumulates reactive power over time, tracking the oscillating e
 
 ### Apparent Energy (VA Energy)
 
-Apparent energy integrates the total apparent power (vector sum magnitude) over time, representing the total power flow through distribution infrastructure. Unlike the relationship $E_{apparent} = \sqrt{E_{active}^2 + E_{reactive}^2}$ which would be incorrect, true apparent energy requires integration of instantaneous apparent power; this accounts for temporal variations where power factor varies throughout the billing period. Meters compare apparent versus active energy to identify power factor trends; when the ratio $E_{apparent}/E_{active}$ approaches 1.0, power factor is excellent; when it exceeds 1.5, significant reactive components exist.
+Apparent energy integrates the total apparent power (vector sum magnitude) over time, representing the total power flow through distribution infrastructure. Unlike the relationship $$E_{apparent} = \sqrt{E_{active}^2 + E_{reactive}^2}$$ which would be incorrect, true apparent energy requires integration of instantaneous apparent power; this accounts for temporal variations where power factor varies throughout the billing period. Meters compare apparent versus active energy to identify power factor trends; when the ratio $E_{apparent}/E_{active}$ approaches 1.0, power factor is excellent; when it exceeds 1.5, significant reactive components exist.
 
 ### Imported vs. Exported Energy
 

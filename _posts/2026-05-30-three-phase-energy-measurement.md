@@ -37,10 +37,11 @@ The total active power is calculated as:
 
 $$P_{total} = P_1 + P_2$$
 
-where 
-$$P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$$ 
-and 
-$$P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$$.
+where:
+
+$$P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$$
+
+$$P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$$
 
 For a balanced three-phase system:
 
@@ -59,17 +60,17 @@ When a neutral conductor is available (4-wire system: R, Y, B, N), the 3-wattmet
 #### Configuration and Theory
 Each wattmeter measures power relative to neutral:
 
-- **Wattmeter 1**:
-  $V_R$ to neutral, current in phase R →
-  $P_R = V_R \times I_R \times \cos(\phi_R)$
+- **Wattmeter 1**: $V_R$ to neutral, current in phase R
 
-- **Wattmeter 2**:
-  $V_Y$ to neutral, current in phase Y →
-  $P_Y = V_Y \times I_Y \times \cos(\phi_Y)$
+$$P_R = V_R \times I_R \times \cos(\phi_R)$$
 
-- **Wattmeter 3**:
-  $V_B$ to neutral, current in phase B →
-  $P_B = V_B \times I_B \times \cos(\phi_B)$
+- **Wattmeter 2**: $V_Y$ to neutral, current in phase Y
+
+$$P_Y = V_Y \times I_Y \times \cos(\phi_Y)$$
+
+- **Wattmeter 3**: $V_B$ to neutral, current in phase B
+
+$$P_B = V_B \times I_B \times \cos(\phi_B)$$
 
 **Total Active Power:**
 
@@ -88,6 +89,7 @@ $$
 $$
 Q_{total} = Q_R + Q_Y + Q_B
 $$
+
 #### Advantages Over 2-Wattmeter Method
 
 The 3-wattmeter method transforms the measurement paradigm by enabling granular per-phase power analysis, fundamentally changing diagnostic capabilities. Each wattmeter independently quantifies power consumption relative to neutral, providing complete decomposition of three-phase power into individual phase contributions. This separation reveals load imbalances with precision; when phases consume significantly different power, it immediately indicates asymmetric load distribution or potential phase faults. 
@@ -194,7 +196,7 @@ $$Current\_Divider = \frac{R_{burden} \times N_s}{N_p} = \frac{78 \times 2}{2500
 
 The CT operates within well-defined performance boundaries that fundamentally constrain measurement accuracy and bandwidth. Saturation represents the primary nonlinear limitation; when secondary current exceeds the design threshold (typically 1.2-1.5 times the rated current), the ferromagnetic core saturates and CT behavior becomes nonlinear, causing severe measurement errors. This saturation risk intensifies during fault conditions when currents can exceed nominal ratings by order of magnitude, requiring protection mechanisms to prevent CT damage and ensure safe operation. Magnetizing current presents a subtle effect during CT energization; the initial magnetization process draws current through the secondary winding even without primary current flowing, creating false current readings at system startup or power transitions. 
 
-The CT introduces a small phase shift, typically under 1 degree, due to internal impedance and magnetizing current; this shift must be characterized and calibrated out in precision measurements to avoid systematic power factor errors. Frequency response characteristics vary with CT design, creating potential measurement inaccuracies at harmonic frequencies; the magnetic permeability changes with frequency, affecting both the transformation ratio and phase shift across the harmonic spectrum. Finally, the CT requires minimum burden load to prevent saturation and voltage spike; an open-circuit CT (broken secondary winding) can develop dangerous high voltages (potentially thousands of volts) due to dV/dt effects, making proper load connection and circuit protection mandatory for safe operation.
+The CT introduces a small phase shift, typically under 1 degree, due to internal impedance and magnetizing current; this shift must be characterized and calibrated out in precision measurements to avoid systematic power factor errors. Frequency response characteristics vary with CT design, creating potential measurement inaccuracies at harmonic frequencies; the magnetic permeability changes with frequency, affecting both the transformation ratio and phase shift across the harmonic spectrum. Finally, the CT requires minimum burden load to prevent saturation and voltage spike; an open-circuit CT (broken secondary winding) can develop dangerous high voltages (potentially thousands of volts) due to $dV/dt$ effects, making proper load connection and circuit protection mandatory for safe operation.
 
 #### Typical CT Specifications Used
 
@@ -283,7 +285,7 @@ Three-phase AC power systems ideally contain only the fundamental frequency (50/
 
 **Harmful Effects of Harmonics:**
 
-Harmonic distortion in modern power systems creates cascading problems throughout the electrical infrastructure. Transformer windings experience excessive heating from harmonic currents, which follow the resistance of copper conductors and generate I²R losses; a transformer designed for 50 Hz fundamental frequency encounters disproportionate losses at harmonic frequencies due to increased skin effect and eddy current generation in structural components. Distribution cables require special K-rating when harmonics exceed 5% THD; standard cables cannot handle the combined heating from fundamental and harmonic currents without insulation degradation. 
+Harmonic distortion in modern power systems creates cascading problems throughout the electrical infrastructure. Transformer windings experience excessive heating from harmonic currents, which follow the resistance of copper conductors and generate $I^2R$ losses; a transformer designed for 50 Hz fundamental frequency encounters disproportionate losses at harmonic frequencies due to increased skin effect and eddy current generation in structural components. Distribution cables require special K-rating when harmonics exceed 5% THD; standard cables cannot handle the combined heating from fundamental and harmonic currents without insulation degradation. 
 
 Capacitor banks present severe vulnerability; harmonic frequencies can coincide with system resonances, creating voltage amplification that can burst capacitors rated for fundamental-frequency operation. Sensitive electronic equipment malfunctions when exposed to harmonic distortion; control circuits, microprocessor timing systems, and precision measurement equipment all suffer errors under distorted waveforms that violate signal integrity assumptions. Harmonic current flowing back into the utility grid affects other customers connected downstream, propagating power quality problems throughout the distribution network and introducing regulatory penalties for excessive harmonic generation.
 
@@ -323,7 +325,7 @@ For real-time harmonic analysis running on embedded systems with limited computa
 
 **Frequency Bins:**
 - Bin 0: DC component (0 Hz)
-- Bin 1: 12.5 Hz (includes fundamental 50 Hz? No, too coarse)
+- Bin 1: 12.5 Hz
 - Bin 2: 25 Hz
 - Bin 3: 37.5 Hz
 - Bin 4: 50 Hz (**Fundamental frequency**)
@@ -414,11 +416,11 @@ Harmonic components introduce complexity; the 3rd harmonic current from the load
 
 Reactive power oscillates between the power source and the reactive load (inductors, capacitors) without performing work; it represents energy that sloshes back and forth through the circuit twice per power cycle (four times per sinusoid cycle). Inductive loads such as motors and transformers require reactive power to establish the magnetic fields necessary for operation; this reactive component lags the voltage by up to 90 degrees. Capacitive loads return energy to the source; their reactive power leads the voltage. Utilities distinguish between lagging (inductive) and leading (capacitive) reactive power because they have different system impacts; excessive inductive reactive power requires capacitor banks for compensation, while leading reactive power (from excessive capacitance) can cause voltage rise problems. 
 
-The per-phase calculation follows directly from the phase angle if available through zero-crossing detection, or can be derived from the relationship Q = P × tan(φ). The quadrant classification of reactive power reveals load type: positive reactive (lagging) indicates motors and inductors, negative reactive (leading) indicates capacitors. A measurement threshold typically suppresses reactive power below 0.5W, eliminating false readings from noise and measurement quantization on lightly loaded systems.
+The per-phase calculation follows directly from the phase angle if available through zero-crossing detection, or can be derived from the relationship $Q = P \times \tan(\phi)$. The quadrant classification of reactive power reveals load type: positive reactive (lagging) indicates motors and inductors, negative reactive (leading) indicates capacitors. A measurement threshold typically suppresses reactive power below 0.5W, eliminating false readings from noise and measurement quantization on lightly loaded systems.
 
 ### Apparent Power (VA)
 
-Apparent power represents the vector sum of real and reactive power, quantifying the total power demand imposed on the electrical infrastructure regardless of whether that power performs useful work. The fundamental relationship S = √(P² + Q²) emerges from Pythagorean geometry applied to orthogonal power components; the magnitude of the power vector combines real and reactive components that are inherently 90 degrees out of phase. For purely resistive loads with zero reactive power, apparent and real power are identical; as reactive components increase, apparent power grows while real power remains fixed, indicating decreasing efficiency. The line-to-line relationship S = V_rms × I_rms represents the magnitude of power that flows through the circuit conductors, regardless of phase angle; this product quantifies maximum power delivery capability. 
+Apparent power represents the vector sum of real and reactive power, quantifying the total power demand imposed on the electrical infrastructure regardless of whether that power performs useful work. The fundamental relationship $S = \sqrt{P^2 + Q^2}$ emerges from Pythagorean geometry applied to orthogonal power components; the magnitude of the power vector combines real and reactive components that are inherently 90 degrees out of phase. For purely resistive loads with zero reactive power, apparent and real power are identical; as reactive components increase, apparent power grows while real power remains fixed, indicating decreasing efficiency. The line-to-line relationship $S = V_{rms} \times I_{rms}$ represents the magnitude of power that flows through the circuit conductors, regardless of phase angle; this product quantifies maximum power delivery capability. 
 
 For unbalanced three-phase systems, total apparent power calculation becomes complex because phase powers cannot be simply added vectorially; the actual three-phase apparent power must account for phase angle relationships between all voltage and current vectors. Apparent power directly determines infrastructure sizing; cables, transformers, and generator sets are rated in kVA (apparent power) rather than kW because they must handle the maximum current that results from that power demand, which depends on magnitude (S) not just real component (P).
 
@@ -430,7 +432,7 @@ System power factor combines all three phases through weighted averaging; it ind
 
 ### Reactive Factor (QF)
 
-The reactive factor represents the percentage of apparent power that oscillates reactively rather than performing useful work, providing a direct complement to power factor. When power factor expresses efficiency in terms of cosine, reactive factor expresses the sine component; the Pythagorean relationship QF² + PF² = 1 holds exactly for sinusoidal signals. Reactive factors exceeding 0.5 (corresponding to power factors below 0.866) typically trigger power factor correction requirements from utilities, as the reactive power dominates and creates excessive burden on distribution infrastructure. System operators track reactive factor evolution throughout the day; as loads shift from motor-heavy (high reactive factor) to resistive-heavy (low reactive factor), the reactive factor component varies, requiring dynamic capacitor bank switching to maintain acceptable power factors.
+The reactive factor represents the percentage of apparent power that oscillates reactively rather than performing useful work, providing a direct complement to power factor. When power factor expresses efficiency in terms of cosine, reactive factor expresses the sine component; the Pythagorean relationship $QF^2 + PF^2 = 1$ holds exactly for sinusoidal signals. Reactive factors exceeding 0.5 (corresponding to power factors below 0.866) typically trigger power factor correction requirements from utilities, as the reactive power dominates and creates excessive burden on distribution infrastructure. System operators track reactive factor evolution throughout the day; as loads shift from motor-heavy (high reactive factor) to resistive-heavy (low reactive factor), the reactive factor component varies, requiring dynamic capacitor bank switching to maintain acceptable power factors.
 
 ### Frequency Measurement
 
@@ -444,7 +446,7 @@ Practical frequency resolution achieves approximately ±0.01 Hz stability with c
 
 ### Energy Calculation Fundamental Relationship
 
-Energy measurement represents the cumulative integration of power over time, forming the basis for all electrical billing and consumption accounting. The mathematical relationship E = ∫P(t)dt expresses energy as the area under the power curve; meters approximate this integral through periodic sampling, calculating power at regular intervals (every 80 milliseconds) and accumulating the product of average power and time interval. Unlike instantaneous power which varies continuously with the sinusoid waveform, energy accumulation produces smooth, monotonically increasing values suitable for billing purposes. 
+Energy measurement represents the cumulative integration of power over time, forming the basis for all electrical billing and consumption accounting. The mathematical relationship $E = \int P(t) \, dt$ expresses energy as the area under the power curve; meters approximate this integral through periodic sampling, calculating power at regular intervals (every 80 milliseconds) and accumulating the product of average power and time interval. Unlike instantaneous power which varies continuously with the sinusoid waveform, energy accumulation produces smooth, monotonically increasing values suitable for billing purposes. 
 
 The implementation strategy accumulates energy in double-precision (64-bit) internal variables to preserve accuracy across months of continuous operation; rounding errors that would be negligible over seconds become significant when accumulated over weeks. Only when storing results for communication or display is the high-precision accumulator converted to single-precision (32-bit) floating-point, at which point sufficient precision remains to support billing to 0.001 kWh resolution even after years of operation.
 
@@ -452,7 +454,11 @@ The implementation strategy accumulates energy in double-precision (64-bit) inte
 
 Active energy represents work performed by the electrical system and constitutes the quantity upon which utility billing is based. The per-phase accumulation integrates active power over the full billing period, typically resulting in values ranging from hundreds of kilowatt-hours for residential customers to millions for large industrial installations. The calculation engine accumulates energy in 80-millisecond cycles; each cycle calculates power samples across 256 ADC samples, integrates the result, and adds the increment to the running total. 
 
-Frequency variations require compensation; the integration accounts for 80-millisecond nominal periods but adjusts when actual system frequency deviates from 50 Hz, preventing billing errors during grid stress conditions. Conversion to kiloWatt-hours from watt-milliseconds requires careful attention to units: energy_kWh = power_watts × time_seconds / 3,600,000. The three-phase total simply sums the per-phase values since energy is already a scalar quantity with direction specified through signed power values.
+Frequency variations require compensation; the integration accounts for 80-millisecond nominal periods but adjusts when actual system frequency deviates from 50 Hz, preventing billing errors during grid stress conditions. Conversion to kiloWatt-hours from watt-milliseconds requires careful attention to units:
+
+$$E_{kWh} = \frac{P_{watts} \times t_{seconds}}{3{,}600{,}000}$$
+
+The three-phase total simply sums the per-phase values since energy is already a scalar quantity with direction specified through signed power values.
 
 ### Reactive Energy (VAR Energy)
 
@@ -460,7 +466,7 @@ Reactive energy accumulates reactive power over time, tracking the oscillating e
 
 ### Apparent Energy (VA Energy)
 
-Apparent energy integrates the total apparent power (vector sum magnitude) over time, representing the total power flow through distribution infrastructure. Unlike the relationship E_apparent = √(E_active² + E_reactive²) which would be incorrect, true apparent energy requires integration of instantaneous apparent power; this accounts for temporal variations where power factor varies throughout the billing period. Meters compare apparent versus active energy to identify power factor trends; when the ratio E_apparent/E_active approaches 1.0, power factor is excellent; when it exceeds 1.5, significant reactive components exist.
+Apparent energy integrates the total apparent power (vector sum magnitude) over time, representing the total power flow through distribution infrastructure. Unlike the relationship $E_{apparent} = \sqrt{E_{active}^2 + E_{reactive}^2}$ which would be incorrect, true apparent energy requires integration of instantaneous apparent power; this accounts for temporal variations where power factor varies throughout the billing period. Meters compare apparent versus active energy to identify power factor trends; when the ratio $E_{apparent}/E_{active}$ approaches 1.0, power factor is excellent; when it exceeds 1.5, significant reactive components exist.
 
 ### Imported vs. Exported Energy
 
@@ -495,7 +501,7 @@ Facilities with strong demand management reduce expensive coincident demand char
 **Billing Impact:**
 $$Bill = (kVA_{MD} \times \text{demand rate}) + (kWh \times \text{energy rate}) + \text{reactive power charges}$$
 
-Typical industrial tariffs charge $5-15 per kVA of maximum demand; for a facility with 500 kVA peak demand, reducing it to 450 kVA saves $2,500-7,500 monthly, justifying significant load management investments.
+Typical industrial tariffs charge \\$5–15 per kVA of maximum demand; for a facility with 500 kVA peak demand, reducing it to 450 kVA saves \\$2,500–7,500 monthly, justifying significant load management investments.
 
 ### Phase Angle Measurement
 
@@ -511,7 +517,7 @@ Storage efficiency improves by compressing four cycles to one; displaying the cl
 
 ### Harmonic Distortion Tracking
 
-Individual harmonic magnitude tracking up to the 16th harmonic provides granular insight into signal composition and enables identification of specific harmonic sources. Different nonlinear devices produce characteristic harmonic signatures; rectifier circuits generate primarily 5th and 7th harmonics (characteristic of bridge rectifier output), three-phase controllers produce 11th and 13th harmonics, and HVDC converters contribute 12k±1 family harmonics. 
+Individual harmonic magnitude tracking up to the 16th harmonic provides granular insight into signal composition and enables identification of specific harmonic sources. Different nonlinear devices produce characteristic harmonic signatures; rectifier circuits generate primarily 5th and 7th harmonics (characteristic of bridge rectifier output), three-phase controllers produce 11th and 13th harmonics, and HVDC converters contribute $12k\pm1$ family harmonics. 
 
 The 16-harmonic limit (covering up to 800 Hz for 50 Hz fundamental) addresses IEEE standards that typically focus on harmonics below the 16th or 25th order; practical power systems rarely contain significant energy beyond 1 kHz. Per-phase harmonic storage enables identification of phase-specific harmonic sources; if only one phase generates significant 3rd harmonic, it likely indicates a single-phase nonlinear load on that phase rather than system-wide distortion. The total harmonic distortion (THD) computation weights harmonics properly: THD reflects RMS magnitude of harmonic content relative to fundamental, so even small magnitudes in many higher-order harmonics can accumulate into significant total distortion. 
 

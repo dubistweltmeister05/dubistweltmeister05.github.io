@@ -37,7 +37,7 @@ The total active power is calculated as:
 
 $$P_{total} = P_1 + P_2$$
 
-where $P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$ and $P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$.
+where $$P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$$ and $$P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$$.
 
 For a balanced three-phase system:
 

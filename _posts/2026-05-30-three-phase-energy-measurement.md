@@ -57,22 +57,37 @@ However, the method suffers from critical limitations for modern applications re
 When a neutral conductor is available (4-wire system: R, Y, B, N), the 3-wattmeter method provides per-phase power measurement with greater flexibility.
 
 #### Configuration and Theory
-
 Each wattmeter measures power relative to neutral:
-- **Wattmeter 1**: 
-$$V_R$$ to neutral, current in phase R → $$P_R = V_R \times I_R \times \cos(\phi_R)$$
-- **Wattmeter 2**: $$V_Y$$ to neutral, current in phase Y → $$P_Y = V_Y \times I_Y \times \cos(\phi_Y)$$
-- **Wattmeter 3**: $$V_B$ to neutral, current in phase B → $P_B = V_B \times I_B \times \cos(\phi_B)$$
+
+- **Wattmeter 1**:
+  $V_R$ to neutral, current in phase R →
+  $P_R = V_R \times I_R \times \cos(\phi_R)$
+
+- **Wattmeter 2**:
+  $V_Y$ to neutral, current in phase Y →
+  $P_Y = V_Y \times I_Y \times \cos(\phi_Y)$
+
+- **Wattmeter 3**:
+  $V_B$ to neutral, current in phase B →
+  $P_B = V_B \times I_B \times \cos(\phi_B)$
 
 **Total Active Power:**
-$$P_{total} = P_R + P_Y + P_B$$
+
+$$
+P_{total} = P_R + P_Y + P_B
+$$
 
 **Reactive Power per Phase:**
-$$Q_{phase} = V_{phase} \times I_{phase} \times \sin(\phi_{phase})$$
+
+$$
+Q_{phase} = V_{phase} \times I_{phase} \times \sin(\phi_{phase})
+$$
 
 **Total Reactive Power:**
-$$Q_{total} = Q_R + Q_Y + Q_B$$
 
+$$
+Q_{total} = Q_R + Q_Y + Q_B
+$$
 #### Advantages Over 2-Wattmeter Method
 
 The 3-wattmeter method transforms the measurement paradigm by enabling granular per-phase power analysis, fundamentally changing diagnostic capabilities. Each wattmeter independently quantifies power consumption relative to neutral, providing complete decomposition of three-phase power into individual phase contributions. This separation reveals load imbalances with precision; when phases consume significantly different power, it immediately indicates asymmetric load distribution or potential phase faults. The method inherently accommodates both balanced and unbalanced loads through its phase-by-phase architecture, eliminating the need for complex auxiliary circuits to handle non-ideal conditions. Reactive power emerges naturally from phase-specific voltage and current measurements without requiring modified circuit topologies, as each phase can be treated independently using standard power relationships. The diagnostic capability becomes transformative: a utility operator can instantly identify if a particular phase is overloaded, detect single-phase failures, and diagnose asymmetric faults that the 2-wattmeter method would obscure within aggregate measurements.

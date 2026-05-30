@@ -59,9 +59,10 @@ When a neutral conductor is available (4-wire system: R, Y, B, N), the 3-wattmet
 #### Configuration and Theory
 
 Each wattmeter measures power relative to neutral:
-- **Wattmeter 1**: $V_R$ to neutral, current in phase R → $P_R = V_R \times I_R \times \cos(\phi_R)$
-- **Wattmeter 2**: $V_Y$ to neutral, current in phase Y → $P_Y = V_Y \times I_Y \times \cos(\phi_Y)$
-- **Wattmeter 3**: $V_B$ to neutral, current in phase B → $P_B = V_B \times I_B \times \cos(\phi_B)$
+- **Wattmeter 1**: 
+$$V_R$$ to neutral, current in phase R → $$P_R = V_R \times I_R \times \cos(\phi_R)$$
+- **Wattmeter 2**: $$V_Y$$ to neutral, current in phase Y → $$P_Y = V_Y \times I_Y \times \cos(\phi_Y)$$
+- **Wattmeter 3**: $$V_B$ to neutral, current in phase B → $P_B = V_B \times I_B \times \cos(\phi_B)$$
 
 **Total Active Power:**
 $$P_{total} = P_R + P_Y + P_B$$

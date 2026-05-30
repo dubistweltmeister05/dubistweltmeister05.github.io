@@ -2,26 +2,13 @@
 title: 'Comprehensive Guide to Three-Phase Energy Measurement'
 date: 2026-05-30
 permalink: /posts/2026/05/three-phase-energy-measurement/
+excerpt: 'A deep-dive into three-phase energy measurement — from classical wattmeter methods to ADC sampling, FFT harmonic analysis, and energy accumulation on embedded systems.'
+toc: true
+toc_label: 'Contents'
 tags:
   - embedded-systems
   - power-electronics
   - firmware
----
-
-# Comprehensive Guide to Three-Phase Energy Measurement
-
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Classical AC Power Measurement Methods](#classical-ac-power-measurement-methods)
-3. [Three-Phase Signal Acquisition](#three-phase-signal-acquisition)
-4. [Hardware Integration: CT and PT Transformers](#hardware-integration-ct-and-pt-transformers)
-5. [ADC Conversion and Digital Sampling](#adc-conversion-and-digital-sampling)
-6. [Measured Parameters](#measured-parameters)
-7. [FFT and Frequency Domain Analysis](#fft-and-frequency-domain-analysis)
-8. [Derived Parameters and Calculations](#derived-parameters-and-calculations)
-9. [Energy Accumulation and Billing](#energy-accumulation-and-billing)
-10. [Advanced Features](#advanced-features)
-
 ---
 
 ## Introduction
@@ -50,11 +37,10 @@ The total active power is calculated as:
 
 $$P_{total} = P_1 + P_2$$
 
-Where:
-- $P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$
-- $P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$
+where $P_1 = V_{RB} \times I_R \times \cos(\phi_{RB})$ and $P_2 = V_{YB} \times I_Y \times \cos(\phi_{YB})$.
 
 For a balanced three-phase system:
+
 $$P_{total} = \sqrt{3} \times V_{line} \times I_{line} \times \cos(\phi)$$
 
 #### Advantages and Limitations
@@ -300,9 +286,8 @@ The FFT algorithm represents one of the most important computational breakthroug
 - Bin 10: 125 Hz (250 Hz harmonic, 5th)
 - ...up to Nyquist frequency (400 Hz)
 
-**Wait - this doesn't capture all harmonics!** Let me reconsider...
+> **Note:** The 64-point downsampled FFT only covers harmonics up to 400 Hz (8th harmonic). For full harmonic coverage to the 16th harmonic (800 Hz), the actual implementation uses a **256-point FFT** on the full sample set:
 
-Actually, for accurate harmonic analysis to the 16th harmonic (800 Hz), a higher sampling rate or different FFT size may be needed. The implementation may use:
 - **256-point FFT** on full 256 samples at 3.2 kHz sampling
 - **Frequency resolution:** 3200 Hz ÷ 256 = 12.5 Hz per bin
 - **Harmonic Coverage:** Up to bin 64 = 800 Hz (16th harmonic at 800 Hz)

@@ -149,8 +149,8 @@ $$V_{actual} = V_{ADC} \times \frac{R1 + R2}{R2} = V_{ADC} \times 757.6$$
 
 **Example Calculation:**
 For a 230V line voltage:
-- $V_{ADC} = 230 \times 0.00132 = 0.304V$ (within 0-2.5V ADC range)
-- After ADC conversion and scaling: $V_{reconstructed} ≈ 230V$ (with calibration factors applied)
+- $$V_{ADC} = 230 \times 0.00132 = 0.304V$$ (within 0-2.5V ADC range)
+- After ADC conversion and scaling: $$V_{reconstructed} ≈ 230V$ $(with calibration factors applied)
 
 #### Important Considerations
 
@@ -231,7 +231,7 @@ The 0.3125 millisecond time between samples translates to 5.625 degrees of phase
 
 Modern microcontroller ADC peripherals support interleaved multi-channel conversion triggered by common timing signals, enabling synchronized voltage and current measurement essential for accurate power calculations. The implementation typically routes six analog channels through the ADC infrastructure (three for phase voltages, three for phase currents) with samples acquired in rapid succession under control of a common timer interrupt. This synchronized acquisition preserves phase relationships between voltage and current signals; any delay in sampling between channels introduces phase error that directly translates to power factor measurement error. 
 
-The common trigger mechanism (Timer8 in this implementation) ensures that all channels update within microseconds of each other, maintaining phase coherence to better than 0.1 degrees even with 64 samples per 20-millisecond cycle. The DMA engine transfers samples directly to memory buffers, bypassing the CPU and eliminating software latency that would otherwise corrupt the synchronized sampling. This architecture is specifically designed to maintain high-fidelity voltage-current phase relationships across all frequency components present in the signal, from the fundamental through harmonic bands, enabling accurate reactive power and power factor calculations that depend critically on phase angle precision.
+The common trigger mechanism ensures that all channels update within microseconds of each other, maintaining phase coherence to better than 0.1 degrees even with 64 samples per 20-millisecond cycle. The DMA engine transfers samples directly to memory buffers, bypassing the CPU and eliminating software latency that would otherwise corrupt the synchronized sampling. This architecture is specifically designed to maintain high-fidelity voltage-current phase relationships across all frequency components present in the signal, from the fundamental through harmonic bands, enabling accurate reactive power and power factor calculations that depend critically on phase angle precision.
 
 ### ADC Buffer Management
 
@@ -278,9 +278,9 @@ Severe imbalances introduce vibration in three-phase motors, increase transforme
 Three-phase AC power systems ideally contain only the fundamental frequency (50/60 Hz). However, non-linear loads (power electronics, LED drivers, etc.) generate harmonic frequencies at integer multiples of the fundamental:
 
 **Harmonic Frequencies:**
-- 3rd harmonic: $3 \times 50 = 150$ Hz
-- 5th harmonic: $5 \times 50 = 250$ Hz
-- 7th harmonic: $7 \times 50 = 350$ Hz
+- 3rd harmonic: $$3 \times 50 = 150$$ Hz
+- 5th harmonic: $$5 \times 50 = 250$$ Hz
+- 7th harmonic: $$7 \times 50 = 350$$ Hz
 - ...up to 31st harmonic or higher
 
 **Harmful Effects of Harmonics:**
@@ -299,10 +299,10 @@ The DFT converts N time-domain samples into N frequency-domain components:
 $$X[k] = \sum_{n=0}^{N-1} x[n] e^{-j2\pi kn/N}$$
 
 Where:
-- $x[n]$ = time-domain sample at index n
-- $X[k]$ = frequency-domain component at frequency bin k
-- $k$ = frequency bin index (0 to N-1)
-- $j$ = imaginary unit
+- $$x[n]$$ = time-domain sample at index n
+- $$X[k]$$ = frequency-domain component at frequency bin k
+- $$k$$ = frequency bin index (0 to N-1)
+- $$j$$ = imaginary unit
 
 **FFT Advantages Over DFT:**
 
@@ -366,9 +366,9 @@ The frequency bins correspond to specific harmonic frequencies based on the FFT 
 $$THD = \frac{\sqrt{\sum_{n=2}^{N} H_n^2}}{H_1} \times 100\%$$
 
 Where:
-- $H_1$ = fundamental component magnitude
-- $H_n$ = nth harmonic component magnitude
-- $N$ = highest harmonic considered (typically 31 or 50)
+- $$H_1$$ = fundamental component magnitude
+- $$H_n$$ = nth harmonic component magnitude
+- $$N$$ = highest harmonic considered (typically 31 or 50)
 
 **Alternative Definition (with fundamental):**
 $$THD_{r} = \frac{\sqrt{\sum_{n=2}^{N} H_n^2}}{\sqrt{\sum_{n=1}^{N} H_n^2}} \times 100\%$$
@@ -517,7 +517,7 @@ Storage efficiency improves by compressing four cycles to one; displaying the cl
 
 ### Harmonic Distortion Tracking
 
-Individual harmonic magnitude tracking up to the 16th harmonic provides granular insight into signal composition and enables identification of specific harmonic sources. Different nonlinear devices produce characteristic harmonic signatures; rectifier circuits generate primarily 5th and 7th harmonics (characteristic of bridge rectifier output), three-phase controllers produce 11th and 13th harmonics, and HVDC converters contribute $12k\pm1$ family harmonics. 
+Individual harmonic magnitude tracking up to the 16th harmonic provides granular insight into signal composition and enables identification of specific harmonic sources. Different nonlinear devices produce characteristic harmonic signatures; rectifier circuits generate primarily 5th and 7th harmonics (characteristic of bridge rectifier output), three-phase controllers produce 11th and 13th harmonics, and HVDC converters contribute $$12k\pm1$$ family harmonics. 
 
 The 16-harmonic limit (covering up to 800 Hz for 50 Hz fundamental) addresses IEEE standards that typically focus on harmonics below the 16th or 25th order; practical power systems rarely contain significant energy beyond 1 kHz. Per-phase harmonic storage enables identification of phase-specific harmonic sources; if only one phase generates significant 3rd harmonic, it likely indicates a single-phase nonlinear load on that phase rather than system-wide distortion. The total harmonic distortion (THD) computation weights harmonics properly: THD reflects RMS magnitude of harmonic content relative to fundamental, so even small magnitudes in many higher-order harmonics can accumulate into significant total distortion. 
 

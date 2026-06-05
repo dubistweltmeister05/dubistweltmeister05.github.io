@@ -192,6 +192,8 @@ SBU1/SBU2  ─→  Sideband Use           ─→  Used by Alt Modes
 ─────────────────────────────────
 ```
 
+<img src="/images/USB-C_Pinout.png" alt="USB-C Connector Pinout">
+
 For a basic USB 3.0 Ethernet adapter, only one SuperSpeed lane pair (TX1/RX1) is needed, leaving the second pair available for other purposes.
 
 The pin allocation story becomes more interesting when considering USB-C's orientation-agnostic design. The CC (Configuration Channel) pins play a critical role before any data flows: when a cable is inserted, the CC logic determines cable orientation (which physical row of pins maps to which logical function) and communicates power role and data role via analog voltage levels and the USB-PD BMC (Biphase Mark Coding) protocol running at 300 kbaud on the CC wire. A multiplexer inside the USB-C port's retimer or controller then routes the SuperSpeed lanes to the correct physical pins based on detected orientation. For the Ethernet adapter, this all happens transparently in under 200ms — but it's worth noting that the CC negotiation also determines whether the port will operate in USB 3.x mode, USB4/Thunderbolt mode, or an Alternate Mode (like DisplayPort). If a dock presents both a DisplayPort Alt Mode sink and an Ethernet adapter, the USB-C port controller must allocate the available lanes: one SuperSpeed pair for USB data (carrying Ethernet traffic) and one pair reassigned to DisplayPort output. This lane-splitting is called "USB-C Multi-Function" mode and is why some docks can simultaneously provide 4K display output and gigabit Ethernet over a single USB-C cable.

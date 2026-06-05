@@ -5,9 +5,11 @@ permalink: /posts/2026/06/the-3-major-ways-of-reading-data-on-a-chip/
 tags:
 - embedded
 title: The 3 Major Ways Of Reading Data On A Chip
+tags:
+  - embedded-systems
+  - hardware
 ---
 
-[[Twitter Posting]]
 
 Let’s get straight to the damn point. When it comes to MCUs, there are three major ways of reading data from peripherals: Polling, Interrupts, and DMA. Every embedded system you’ll ever touch will rely on one or more of these mechanisms. The difference between them fundamentally comes down to one thing: who is responsible for noticing that data is ready?
 

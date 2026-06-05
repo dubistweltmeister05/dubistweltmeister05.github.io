@@ -31,6 +31,8 @@ USB-C solves this with adapters and docking stations that bridge USB to Ethernet
 
 The disappearance of the RJ45 port from laptops is not merely an aesthetic choice — it is a fundamental mechanical constraint. The RJ45 connector body requires a minimum Z-height of 13.2mm, whereas modern ultrabooks target chassis profiles of 14-16mm total. Even with internal board clearances, there is no room for a full-height Ethernet jack without a protruding bump or a mechanical fold-down mechanism (as some Lenovo ThinkPads used historically). USB-C, at just 2.6mm tall, sidesteps this entirely by offloading the bulky RJ45 interface to an external adapter or dock, while still providing the electrical bandwidth needed to sustain multi-gigabit Ethernet traffic without compromise.
 
+<img src="/images/RJ45_eth_connector.png" alt="an old ethernet connector" width="600">
+
 The reliability argument extends beyond simple interference avoidance. WiFi operates in shared, half-duplex spectrum where contention, retransmissions, and channel scanning introduce stochastic latency that no QoS policy can fully eliminate. Wired Ethernet, by contrast, operates in a dedicated full-duplex collision domain with deterministic frame timing. For applications like real-time audio/video production (where a single dropped frame creates an audible glitch), industrial control systems operating on EtherCAT or PROFINET, or financial trading platforms where microseconds translate to profit, the determinism of wired Ethernet is non-negotiable. USB-C Ethernet adapters bring this determinism to ultraportable hardware that would otherwise be WiFi-only.
 
 ---

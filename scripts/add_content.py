@@ -26,7 +26,8 @@ python3 scripts/add_content.py ~/project.md --type portfolio --excerpt "A cool p
 
 # Preview without writing anything
 python3 scripts/add_content.py ~/my-draft.md --dry-run
-
+eg - 
+python3 scripts/add_content.py 'D:\One Drive\OneDrive - TOR.AI LIMITED\Desktop\kinko\6 - Full Notes\The 3 major ways of reading data on a Chip..md' --tags embedded --dry-run
 """
 
 import argparse

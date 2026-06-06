@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 add_content.py — Add a markdown file to the Jekyll site with proper front matter.
 
 Usage:
@@ -27,7 +27,7 @@ python3 scripts/add_content.py ~/project.md --type portfolio --excerpt "A cool p
 # Preview without writing anything
 python3 scripts/add_content.py ~/my-draft.md --dry-run
 eg - 
-python3 scripts/add_content.py 'D:\One Drive\OneDrive - TOR.AI LIMITED\Desktop\kinko\6 - Full Notes\The 3 major ways of reading data on a Chip..md' --tags embedded --dry-run
+python3 scripts/add_content.py 'C:\Users\HP\Desktop\kinko\6 - Full Notes\BLDC Motors - An Overview.md' --tags embedded --dry-run
 """
 
 import argparse
@@ -36,6 +36,7 @@ import shutil
 import sys
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 # Root of the Jekyll site (the directory containing this script's parent)
 SITE_ROOT = Path(__file__).resolve().parent.parent
@@ -47,28 +48,130 @@ DEST_DIRS = {
 }
 
 
+def _coerce_scalar(value: str) -> Any:
+    """Convert plain scalar YAML-like values to Python primitives."""
+    stripped = value.strip()
+    if stripped in ("", "null", "Null", "NULL", "~"):
+        return None
+    lower = stripped.lower()
+    if lower == "true":
+        return True
+    if lower == "false":
+        return False
+    if re.fullmatch(r"[+-]?\d+", stripped):
+        try:
+            return int(stripped)
+        except ValueError:
+            pass
+    if re.fullmatch(r"[+-]?\d+\.\d+", stripped):
+        try:
+            return float(stripped)
+        except ValueError:
+            pass
+
+    quoted = (
+        (stripped.startswith('"') and stripped.endswith('"'))
+        or (stripped.startswith("'") and stripped.endswith("'"))
+    )
+    if quoted and len(stripped) >= 2:
+        return stripped[1:-1]
+    return stripped
+
+
+def _parse_inline_list(value: str) -> list[Any] | None:
+    stripped = value.strip()
+    if not (stripped.startswith("[") and stripped.endswith("]")):
+        return None
+    inner = stripped[1:-1].strip()
+    if not inner:
+        return []
+    return [_coerce_scalar(part.strip()) for part in inner.split(",")]
+
+
 def parse_front_matter(text: str) -> tuple[dict, str]:
     """Return (front_matter_dict, body) from raw markdown text."""
-    import yaml
-
     match = re.match(r"^---\s*\n(.*?)\n---\s*\n", text, re.DOTALL)
-    if match:
-        try:
-            fm = yaml.safe_load(match.group(1)) or {}
-        except Exception:
-            fm = {}
-        body = text[match.end():]
-    else:
-        fm = {}
-        body = text
+    if not match:
+        return {}, text
+
+    fm_text = match.group(1)
+    body = text[match.end():]
+    fm: dict[str, Any] = {}
+
+    current_key: str | None = None
+    for raw_line in fm_text.splitlines():
+        line = raw_line.rstrip()
+        if not line or line.lstrip().startswith("#"):
+            continue
+
+        if line.startswith("  - ") or line.startswith("- "):
+            if current_key is not None and isinstance(fm.get(current_key), list):
+                item = line.split("-", 1)[1].strip()
+                fm[current_key].append(_coerce_scalar(item))
+            continue
+
+        if ":" not in line:
+            current_key = None
+            continue
+
+        key, value = line.split(":", 1)
+        key = key.strip()
+        value = value.strip()
+
+        if value == "":
+            fm[key] = []
+            current_key = key
+            continue
+
+        inline_list = _parse_inline_list(value)
+        if inline_list is not None:
+            fm[key] = inline_list
+            current_key = None
+            continue
+
+        fm[key] = _coerce_scalar(value)
+        current_key = None
+
     return fm, body
 
 
-def build_front_matter(fm: dict) -> str:
-    """Serialise a front-matter dict back to YAML fenced block."""
-    import yaml
+def _yaml_scalar(value: Any) -> str:
+    """Render Python values as simple YAML scalars."""
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return str(value)
 
-    return "---\n" + yaml.dump(fm, default_flow_style=False, allow_unicode=True) + "---\n"
+    text = str(value)
+    if text == "":
+        return '""'
+
+    needs_quotes = bool(
+        re.search(r"[:#\n\r\t\[\]\{\},]|^\s|\s$", text)
+        or text.lower() in {"true", "false", "null", "~"}
+        or text.startswith(("-", "?", "!", "*", "&", ">", "|", "@", "`"))
+    )
+    escaped = text.replace('"', '\\"')
+    return f'"{escaped}"' if needs_quotes else escaped
+
+
+def build_front_matter(fm: dict) -> str:
+    """Serialise a front-matter dict back to a YAML fenced block."""
+    lines: list[str] = ["---"]
+    for key, value in fm.items():
+        if isinstance(value, list):
+            if not value:
+                lines.append(f"{key}: []")
+            else:
+                lines.append(f"{key}:")
+                for item in value:
+                    lines.append(f"  - {_yaml_scalar(item)}")
+        else:
+            lines.append(f"{key}: {_yaml_scalar(value)}")
+    lines.append("---")
+    return "\n".join(lines) + "\n"
 
 
 def slugify(text: str) -> str:

@@ -7,7 +7,7 @@ tags:
   - embedded
 ---
 
-
+Brushless DC (BLDC) motors have quietly become one of the most widespread motor technologies in modern engineering. From the cooling fan inside your laptop to the traction motor in an electric vehicle, they appear everywhere — yet the principles behind them are rarely explained in a concise, end-to-end way. This post walks through what a BLDC motor is, why it was developed, how commutation actually works, how it is driven, where it is used, and the hardware components that make up a complete system.
 
 <img src="/images/BLDC_Title.png" alt="Components of a BLDC">
 # What is a BLDC Motor
